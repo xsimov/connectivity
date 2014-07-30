@@ -9,6 +9,7 @@ class ConnectionDiagnostic
   def perform_diagnostic
     @client.disconnect
     status = client_connection
+    raise Exception, "Could'nt connect!" unless status
   end
 
   def client_connection(times_tried = 0)

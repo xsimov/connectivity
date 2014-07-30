@@ -33,6 +33,11 @@ describe ConnectionDiagnostic do
       @connection.perform_diagnostic
     end
 
+    it "raises an error if unsuccessful connection" do
+      allow(@client).to receive(:connect).with("any non-empty str").and_return(false, false, false)
+      expect(@connection.perform_diagnostic).to raise_error("Could'nt connect!")
+    end
+
   end
 
 end
